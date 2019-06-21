@@ -9,7 +9,6 @@ volumes:
     grafana_data: {}
 
 services:
-
   prometheus:
     image: prom/prometheus:v2.9.2
     container_name: prometheus
@@ -47,43 +46,6 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  nodeexporter:
-    image: prom/node-exporter:v0.18.1
-    container_name: nodeexporter
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.rootfs=/rootfs'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
-    restart: unless-stopped
-    expose:
-      - 9100
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
-  cadvisor:
-    image: google/cadvisor:v0.33.0
-    container_name: cadvisor
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
-    restart: unless-stopped
-    expose:
-      - 8080
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
   grafana:
     image: grafana/grafana:6.2.4
     container_name: grafana
@@ -99,18 +61,7 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
     restart: unless-stopped
     expose:
-      - 3000
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
-  pushgateway:
-    image: prom/pushgateway:v0.8.0
-    container_name: pushgateway
-    restart: unless-stopped
-    expose:
-      - 9091
+      - 80
     networks:
       - monitor-net
     labels:
@@ -120,10 +71,9 @@ services:
     image: stefanprodan/caddy
     container_name: caddy
     ports:
-      - "3000:3000"
+      - "80:80"
       - "9090:9090"
       - "9093:9093"
-      - "9091:9091"
     volumes:
       - ./caddy/:/etc/caddy/
     environment:
