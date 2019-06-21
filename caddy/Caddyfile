@@ -19,7 +19,7 @@
 }
 
 :80 {
-    proxy / grafana:80 {
+    proxy / grafana:3000 {
             transparent
             websocket
         }
