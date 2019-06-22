@@ -33,11 +33,10 @@ services:
   alertmanager:
     image: prom/alertmanager:v0.17.0
     container_name: alertmanager
-    env_file: .env
     volumes:
       - ./alertmanager/:/etc/alertmanager/
     command:
-      - '--config.file=/etc/alertmanager/config.yml'
+      - '--config.file=/etc/alertmanager/config.resolved.yml'
       - '--storage.path=/alertmanager'
     restart: unless-stopped
     expose:

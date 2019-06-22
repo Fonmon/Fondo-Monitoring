@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source .env
+envsubst < "alertmanager/config.yml" > "alertmanager/config.resolved.yml"
+
+docker-compose -f docker-compose.host.yml up -d

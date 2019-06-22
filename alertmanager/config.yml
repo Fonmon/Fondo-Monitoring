@@ -7,6 +7,6 @@ receivers:
       - to: $PERSONAL_EMAIL
         from: $EMAIL_HOST_USER
         smarthost: $EMAIL_HOST
-        auth_username: "$EMAIL_HOST_USER"
-        auth_identity: "$EMAIL_HOST_USER"
-        auth_password: "$EMAIL_HOST_PASSWORD"
+        auth_username: $EMAIL_HOST_USER
+        auth_identity: $EMAIL_HOST_USER
+        auth_password: $EMAIL_HOST_PASSWORD
