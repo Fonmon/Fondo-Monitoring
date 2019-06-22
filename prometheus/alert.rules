@@ -42,10 +42,10 @@ groups:
 - name: containers
   rules:
   - alert: container_down
-    expr: absent(container_memory_usage_bytes{image!="",container_label_org_label_schema_group=""})
+    expr: (time() - container_last_seen{name=~"^(?:fondo_api|fondo_web|fondo_db|fondo_api_worker|fondo_mns|redis)$"}) > 10
     for: 30s
     labels:
       severity: critical
     annotations:
       summary: "Container {{ $labels.name }} is down"
-      description: "Container {{ $labels.name }} is down in {{ $labels.instance }} for more than 30 seconds."
+      description: "Container {{ $labels.name }} is down in {{ $labels.instance }} for more than 30 seconds ({{ $value }}s)."
