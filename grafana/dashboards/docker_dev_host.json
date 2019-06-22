@@ -478,7 +478,7 @@
             },
             "targets": [
               {
-                "expr": "sum(node_filesystem_free_bytes{fstype=\"aufs\",group=\"dev\"})",
+                "expr": "sum(node_filesystem_free_bytes{fstype=\"ext4\",group=\"dev\"})",
                 "interval": "30s",
                 "intervalFactor": 1,
                 "legendFormat": "",

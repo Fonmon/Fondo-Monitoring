@@ -404,7 +404,7 @@
             },
             "targets": [
               {
-                "expr": "(node_filesystem_size_bytes{fstype=\"aufs\",group=\"prod\"} - node_filesystem_free_bytes{fstype=\"aufs\",group=\"prod\"}) / node_filesystem_size_bytes{fstype=\"aufs\",group=\"prod\"}  * 100",
+                "expr": "(node_filesystem_size_bytes{fstype=\"ext4\",group=\"prod\"} - node_filesystem_free_bytes{fstype=\"ext4\",group=\"prod\"}) / node_filesystem_size_bytes{fstype=\"ext4\",group=\"prod\"}  * 100",
                 "interval": "30s",
                 "intervalFactor": 1,
                 "legendFormat": "",
@@ -487,7 +487,7 @@
             },
             "targets": [
               {
-                "expr": "sum(container_fs_usage_bytes{group=\"prod\")",
+                "expr": "sum(container_fs_usage_bytes{group=\"prod\"})",
                 "interval": "30s",
                 "intervalFactor": 2,
                 "refId": "A",
