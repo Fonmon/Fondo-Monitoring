@@ -1,6 +1,12 @@
 #!/bin/bash
 
 source .env
+
+export PERSONAL_EMAIL=$PERSONAL_EMAIL
+export EMAIL_HOST=$EMAIL_HOST
+export EMAIL_HOST_USER=$EMAIL_HOST_USER
+export EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
+
 envsubst < "alertmanager/config.yml" > "alertmanager/config.resolved.yml"
 
 docker-compose -f docker-compose.host.yml up -d
