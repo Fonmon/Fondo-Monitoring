@@ -1,8 +1,8 @@
 :9090 {
     basicauth / {$ADMIN_USER} {$ADMIN_PASSWORD}
     proxy / prometheus:9090 {
-            transparent
-        }
+        transparent
+    }
 
     errors stderr
     tls off
@@ -11,8 +11,8 @@
 :9093 {
     basicauth / {$ADMIN_USER} {$ADMIN_PASSWORD}
     proxy / alertmanager:9093 {
-            transparent
-        }
+        transparent
+    }
 
     errors stderr
     tls off
@@ -20,9 +20,9 @@
 
 :80 {
     proxy / grafana:3000 {
-            transparent
-            websocket
-        }
+        transparent
+        websocket
+    }
 
     errors stderr
     tls off
