@@ -1,13 +1,13 @@
 {"dashboard": {
   "id": null,
-  "title": "Docker Containers",
-  "description": "Containers metrics",
+  "title": "Dev Docker Containers",
+  "description": "Dev Containers metrics",
   "tags": [
     "docker"
   ],
   "style": "dark",
   "timezone": "browser",
-  "editable": true,
+  "editable": false,
   "hideControls": false,
   "sharedCrosshair": true,
   "rows": [

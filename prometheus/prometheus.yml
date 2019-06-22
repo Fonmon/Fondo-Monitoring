@@ -16,12 +16,22 @@ scrape_configs:
   - job_name: 'nodeexporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['dev-fonmon.minagle.com:9100', 'fonmon.minagle.com:9100']
+      - targets: ['dev-fonmon.minagle.com:9100']
+        labels:
+          group: 'dev'
+      - targets: ['fonmon.minagle.com:9100']
+        labels:
+          group: 'prod'
 
   - job_name: 'cadvisor'
     scrape_interval: 5s
     static_configs:
-      - targets: ['dev-fonmon.minagle.com:9000', 'fonmon.minagle.com:9000']
+      - targets: ['dev-fonmon.minagle.com:9000']
+        labels:
+          group: 'dev'
+      - targets: ['fonmon.minagle.com:9000']
+        labels:
+          group: 'prod'
 
   - job_name: 'prometheus'
     scrape_interval: 10s
